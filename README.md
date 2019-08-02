@@ -164,3 +164,38 @@ $ git commit -m "test commitlint"
 # 报错，提交失败
 
 ```
+
+### 生成 Change log
+
+如果你的所有 commit 都符合 Angular 格式，那么发布新版本时，Change log 就可以用脚本自动生成。
+
+生成的文档包括以下三个部分。
+- New features
+- Bug fixes
+- Breaking changes
+
+每个部分都会罗列相关的 commit ，并且有指向这些 commit 的链接。当然，生成的文档允许手动修改，所以发布前，你还可以添加其他内容。
+
+我们使用 conventional-changelog 自动根据 commit 生成 change log 。
+
+#### 安装：
+
+```bash
+$ npm install -g conventional-changelog-cli
+$ cd my-project
+$ conventional-changelog -p angular -i CHANGELOG.md -s
+
+```
+
+#### 配置 npm 命令
+在 package.json 中添加：
+```json
+{
+    "scripts": {
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    },
+}
+
+```
+
+通过执行 `npm run changelog` 就可以生成 change log 文档了。
