@@ -1,6 +1,6 @@
 {
     "name": "use-commitizen",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "beautify your commit message",
     "main": "index.js",
     "scripts": {
