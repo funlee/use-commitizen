@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/funlee/use-commitizen/compare/v1.0.1...v1.0.3) (2019-08-02)
+
+
+### Features
+
+* **changelog.md:** 生成 CHANGELOG.md ([f0a3509](https://github.com/funlee/use-commitizen/commit/f0a3509))
+
+
+
 ## [1.0.1](https://github.com/funlee/use-commitizen/compare/78715c7...v1.0.1) (2019-08-02)
 
 
