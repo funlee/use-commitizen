@@ -1,0 +1,30 @@
+{
+  "name": "use-commitizen",
+  "version": "1.0.0",
+  "description": "beautify your commit message",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funlee/use-commitizen.git"
+  },
+  "keywords": [
+    "commitizen"
+  ],
+  "author": "funlee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/funlee/use-commitizen/issues"
+  },
+  "homepage": "https://github.com/funlee/use-commitizen#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
