@@ -69,7 +69,8 @@ Footer 部分只用于两种情况
 ### 使用 Commitizen
 下面介绍利用 Commitizen 如何自动生成符合上述规范的 commit message。
 
-#### 安装
+先全局安装 commitizen ：
+
 ```bash
 $ npm install -g commitizen
 
@@ -87,5 +88,79 @@ $ commitizen init cz-conventional-changelog --save --save-exact
 $ git add .
 
 $ git cz
+
+```
+
+### 添加 Commitlint 校验
+Commitizen 可以帮助我们规范自己的 commit-message，但是在团队合作中，如何规范其他成员的 commit 规范呢？
+
+以前可以使用 validate-commit-msg 来检查你的项目的 commit-message 是否符合格式，由于官方已经把 validate-commit-msg 项目给废弃掉啦，推荐使用 [commitlint](https://github.com/conventional-changelog/commitlint)。
+
+commitlint 和 validate-commit-msg 功能类似，可以帮助我们 lint commit messages, 如果我们提交的不符合指向的规范, 直接拒绝提交, 下面看看怎么使用 commitlint 吧。
+
+#### 安装
+
+安装 commitlint 和 推荐的校验配置项 config-conventional：
+
+```bash
+$ npm install --save-dev @commitlint/config-conventional @commitlint/cli
+
+```
+在 commitlint 中，我们可以指定一份校验配置项，比如以下的配置项你都可以使用：
+
+- [@commitlint/config-angular](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-angular)
+- [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional)
+- [@commitlint/config-lerna-scopes](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-lerna-scopes)
+- [@commitlint/config-patternplate](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-patternplate)
+- [conventional-changelog-lint-config-atom](https://github.com/erikmueller/conventional-changelog-lint-config-atom)
+- [conventional-changelog-lint-config-canonical](https://github.com/gajus/conventional-changelog-lint-config-canonical)
+
+我们推荐使用 [@commitlint/config-angular](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-angular)，在我们的安装命令中，也已经安装了此规范。
+
+#### 配置校验规范
+
+在项目目录下创建配置文件 .commitlintrc.js, 写入:
+```js
+module.exports = {
+  extends: [
+    "@commitlint/config-conventional"
+  ],
+  rules: {
+  }
+};
+
+```
+
+#### 结合 Husky
+校验 commit message 的最佳方式是结合 git hook, 所以需要配合 [Husky](https://github.com/typicode/husky)。
+
+安装 husky :
+
+```bash
+npm install husky --save-dev
+
+```
+
+在 package.json 中添加：
+
+```json
+{
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+    }
+}
+
+```
+
+至此就已经完成了利用 config-conventional 规范对 commit message 的校验。你可以试试不通过 `git cz` 命令按照规范提交代码，就会报错拒绝提交。
+
+```bash
+$ git add .
+
+$ git commit -m "test commitlint"
+
+# 报错，提交失败
 
 ```
