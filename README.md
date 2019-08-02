@@ -204,3 +204,16 @@ $ conventional-changelog -p angular -i CHANGELOG.md -s
 - 这里安装的是 conventional-changelog-cli，安装 conventional-changelog 会报 conventional-changelog: command not found 的错误
 - 查阅了很多文章使用的是 `conventional-changelog -p angular -i CHANGELOG.md -w`，这样只能在命令行中 log 出 CHANGELOG 的内容，不会生成文件，如果要生成文件需要使用 `conventional-changelog -p angular -i CHANGELOG.md -s`。更多的 config 可以使用 conventional-changelog --help 查看
 - 还需要注意的是，在生成 changlog 之前，需要先使用 `$ npm version [version]` 更改版本号，然后再生成 changelog，这一步很多的博文都没有写，就会导致增量生成的 CHANGELOG 一直都有之前的 commit 记录。
+
+### 增加 emoji
+
+[emoji 规范](https://gitmoji.carloscuesta.me/)。
+
+那么这些 Emoji 是怎么使用？答案是，在 Emoji 的名字前后个加上一个冒号 `:name_of_emoji:`
+
+因此，我们可以这样提交代码:
+
+```bash
+$ git commit -m ":bug: fix a bug"
+
+```
