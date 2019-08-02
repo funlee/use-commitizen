@@ -199,3 +199,8 @@ $ conventional-changelog -p angular -i CHANGELOG.md -s
 ```
 
 通过执行 `npm run changelog` 就可以生成 change log 文档了。
+
+#### 踩坑记录
+- 这里安装的是 conventional-changelog-cli，安装 conventional-changelog 会报 conventional-changelog: command not found 的错误
+- 查阅了很多文章使用的是 `conventional-changelog -p angular -i CHANGELOG.md -w`，这样只能在命令行中 log 出 CHANGELOG 的内容，不会生成文件，如果要生成文件需要使用 `conventional-changelog -p angular -i CHANGELOG.md -s`。更多的 config 可以使用 conventional-changelog --help 查看
+- 还需要注意的是，在生成 changlog 之前，需要先使用 `$ npm version [version]` 更改版本号，然后再生成 changelog，这一步很多的博文都没有写，就会导致增量生成的 CHANGELOG 一直都有之前的 commit 记录。
